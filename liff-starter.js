@@ -1,8 +1,6 @@
 window.onload = function (e) {
     liff.init(function (data) {
-        console.log("--------start------")
-        console.log(data)
-        console.log("--------end------")
+        window.alert(data);
         initializeApp(data);
     });
 };
