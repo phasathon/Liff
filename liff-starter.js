@@ -1,6 +1,6 @@
 window.onload = function (e) {
     liff.init(function (data) {
-        window.alert( data.context.userId);
+        window.alert(JSON.stringify(data));
         initializeApp(data);
     });
 };
