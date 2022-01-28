@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <form action="register.html" method="post">
+                <form action="register.html" name="frmMain" id="frmMain" method="post">
                 
                     <fieldset>
                     <!-- <legend><span class="number">1</span>Your basic info</legend> -->
@@ -36,10 +36,42 @@
                     
                     </fieldset>
                     <hr class="mb-4">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign Up</button>
+                    <button type="submit" name="btnSend" id="btnSend" class="btn btn-primary btn-lg btn-block">Sign Up</button>
                 </form>
             </div>
         </div>
     </div>
 </body>
 </html>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        
+        $("#btnSend").click(function() {
+            var registerLineWebReqBeanObject = JSON.stringify({
+                        citizenId: deviceUuid,
+                        firstName: deviceUuid,
+                        lastName: deviceUuid,
+                        lineUserId: deviceUuid,
+                        mobileNo: deviceUuid,
+                        email: deviceUuid,
+                    })
+                $.ajax({
+                    type: "POST",
+                    url: "http://18.142.20.206:7090/register/line-web-key-in",
+                    data: { json: JSON.stringify({
+                        deviceUuid: "web",
+                        registerLineWebReqBean: registerLineWebReqBeanObject,
+                        timestamp: 0,
+                        userTransactionKey: "string"
+                    })},
+                    dataType: 'json',
+                    success: function(result) {
+                    alert(result);
+                   }
+                 });
+
+        });
+
+    });
+</script>
