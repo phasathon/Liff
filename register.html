@@ -28,15 +28,6 @@
                     <label for="last_name">Last Name:</label>
                     <input type="text" class="form-control" id="last_name" name="last_name" required>
 
-                    <label for="user_mobile">Mobile No:</label>
-                    <input type="text" class="form-control" id="user_mobile" name="user_mobile" required>
-                    
-                    <label for="mail">Email:</label>
-                    <input type="email" class="form-control" id="user_email" name="user_email" required>
-
-                    <label for="line_user_id">Line User Id:</label>
-                    <input type="text" class="form-control" id="line_user_id" name="line_user_id">
-                    
                     </fieldset>
                     <hr class="mb-4">
                     <button type="submit" name="btnSend" id="btnSend" class="btn btn-primary btn-lg btn-block">Sign Up</button>
@@ -58,15 +49,15 @@
                         citizenId: $('input[name="citizen_id"]').val(),
                         firstName: $('input[name="first_name"]').val(),
                         lastName: $('input[name="last_name"]').val(),
-                        lineUserId: $('input[name="line_user_id"]').val(),
-                        mobileNo: $('input[name="user_mobile"]').val(),
-                        email: $('input[name="user_email"]').val(),
+                        lineUserId: "test",
+                        mobileNo:"test",
+                        email: "test",
                     })
                 $.ajax({
                     type: "POST",
                     url: "http://18.142.20.206:7090/register/line-web-key-in",
                     headers:{         
-                        'Content-Type' : 'application/json',
+                        'Content-Type' : 'application/json'
                     },
                     data: JSON.stringify({
                         deviceUuid: "web",
@@ -76,14 +67,12 @@
                     }),
                     dataType: 'json',
                     success: function(result) {
-                        console.log("test3")
-                        alert("asas");
+                        alert("success");
                     },
                     error: function(errMsg) {
                         alert(errMsg);
                     }
                  });
-                 console.log("test2")
 
         });
 
