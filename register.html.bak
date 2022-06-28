@@ -28,6 +28,12 @@
                     <label for="last_name">Last Name:</label>
                     <input type="text" class="form-control" id="last_name" name="last_name" required>
 
+                    <label for="user_mobile">Mobile No:</label>
+                    <input type="text" class="form-control" id="user_mobile" name="user_mobile" required>
+                    
+                    <label for="mail">Email:</label>
+                    <input type="email" class="form-control" id="user_email" name="user_email" required>
+
                     <label for="line_user_id">Line User Id:</label>
                     <input type="text" class="form-control" id="line_user_id" name="line_user_id">
                     
@@ -53,14 +59,16 @@
                         firstName: $('input[name="first_name"]').val(),
                         lastName: $('input[name="last_name"]').val(),
                         lineUserId: $('input[name="line_user_id"]').val(),
-                        mobileNo: "test",
-                        email: "test",
+                        mobileNo: $('input[name="user_mobile"]').val(),
+                        email: $('input[name="user_email"]').val(),
                     })
                 $.ajax({
                     type: "POST",
                     url: "http://18.142.20.206:7090/register/line-web-key-in",
                     headers:{         
-                        'Content-Type' : 'application/json'
+                        'Content-Type' : 'application/json',
+                        'Access-Control-Allow-Origin': 'registerline.com',
+                        'Access-Control-Allow-Methods': 'POST'
                     },
                     data: JSON.stringify({
                         deviceUuid: "web",
@@ -70,12 +78,14 @@
                     }),
                     dataType: 'json',
                     success: function(result) {
-                        alert("success");
+                        console.log("test3")
+                        alert("asas");
                     },
                     error: function(errMsg) {
                         alert(errMsg);
                     }
                  });
+                 console.log("test2")
 
         });
 
