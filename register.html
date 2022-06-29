@@ -45,10 +45,8 @@
 <script src="https://static.line-scdn.net/liff/edge/versions/2.3.0/sdk.js"></script>
 <script>
   function runApp() {
-    alert("hello");
     liff.getProfile().then(profile => {
-      document.getElementById("line_user_id").innerHTML =  profile.userId;
-      alert(profile.userId);
+        $('input[name="line_user_id"]').val(profile.userId);
     }).catch(err => console.error(err));
   }
   liff.init({ liffId: "1656860538-BVExxPLn" }, () => {
