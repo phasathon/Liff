@@ -79,6 +79,7 @@
                 dataType: 'json',
                 success: function(result) {
                     alert("success");
+                    window.top.close();
                 },
                 error: function(errMsg) {
                     alert(errMsg);
