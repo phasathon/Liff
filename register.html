@@ -78,8 +78,7 @@
                 data: JSON.stringify(registerLineWebReqBean),
                 dataType: 'json',
                 success: function(result) {
-                    alert("success");
-                    window.top.close();
+                    window.close();
                 },
                 error: function(errMsg) {
                     alert(errMsg);
