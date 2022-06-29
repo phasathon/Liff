@@ -42,7 +42,21 @@
 <script src="jquery.min.js" type="text/javascript"></script>
 <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
 <script src="register.js"></script>
-
+<script src="https://static.line-scdn.net/liff/edge/versions/2.3.0/sdk.js"></script>
+<script>
+  function runApp() {
+    liff.getProfile().then(profile => {
+      document.getElementById("line_user_id").innerHTML =  profile.userId;
+    }).catch(err => console.error(err));
+  }
+  liff.init({ liffId: "1656860538-BVExxPLn" }, () => {
+    if (liff.isLoggedIn()) {
+      runApp()
+    } else {
+      liff.login();
+    }
+  }, err => console.error(err.code, error.message));
+</script>
 <script type="text/javascript">
     $(document).ready(function() {
         
@@ -65,7 +79,7 @@
                 data: JSON.stringify(registerLineWebReqBean),
                 dataType: 'json',
                 success: function(result) {
-                    alert(JSON.stringify(result)+" test");
+                    alert("success");
                 },
                 error: function(errMsg) {
                     alert(errMsg);
