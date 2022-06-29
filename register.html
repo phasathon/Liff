@@ -48,32 +48,38 @@
         
         $("form").submit(function(e) {
             e.preventDefault();
-            var registerLineWebReqBeanObject = JSON.stringify({
-                        citizenId: $('input[name="citizen_id"]').val(),
-                        firstName: $('input[name="first_name"]').val(),
-                        lastName: $('input[name="last_name"]').val(),
-                        lineUserId: $('input[name="line_user_id"]').val(),
-                        mobileNo: "test",
-                        email: "test"
-                    })
+            var req = {};
+            req.deviceUuid = "string";
+            req.timestamp = 0;
+            req.userTransactionKey = "string";
+
+            var registerLineWebReqBean = {};
+            registerLineWebReqBean.citizenId = $('input[name="citizen_id"]').val();
+            registerLineWebReqBean.firstName = $('input[name="first_name"]').val();
+            registerLineWebReqBean.lastName = $('input[name="last_name"]').val(),
+            registerLineWebReqBean.lineUserId = $('input[name="line_user_id"]').val();
+            registerLineWebReqBean.mobileNo = "0907363781";
+            registerLineWebReqBean.email = "test@gmail.com"
+            req.registerLineWebReqBean = registerLineWebReqBean
+            // var registerLineWebReqBeanObject = JSON.stringify({
+            //             citizenId: $('input[name="citizen_id"]').val(),
+            //             firstName: $('input[name="first_name"]').val(),
+            //             lastName: $('input[name="last_name"]').val(),
+            //             lineUserId: $('input[name="line_user_id"]').val(),
+            //             mobileNo: "0907363781",
+            //             email: "test@gmail.com",
+            //         })
+                    console.log(req);
                 $.ajax({
                     type: "POST",
-                    url: "http://18.142.20.206:7090/register/line-web-key-in",
+                    url: "http://localhost:8090/register/line_web_key_in",
                     headers:{         
-                        'Content-Type' : 'application/json',
-                        'Accept' : '*/*',
-                        'Accept-Encoding' : 'gzip, deflate, br',
-                        'Connection' : 'keep-alive'
+                        'Content-Type' : 'application/json'
                     },
-                    data: JSON.stringify({
-                        deviceUuid: "String",
-                        registerLineWebReqBean: JSON.parse(registerLineWebReqBeanObject),
-                        timestamp: 0,
-                        userTransactionKey: "string"
-                    }),
+                    data: JSON.stringify(req),
                     dataType: 'json',
                     success: function(result) {
-                        alert("success");
+                        alert(JSON.stringify(result)+" test");
                     },
                     error: function(errMsg) {
                         alert(errMsg);
