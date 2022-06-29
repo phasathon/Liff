@@ -48,43 +48,29 @@
         
         $("form").submit(function(e) {
             e.preventDefault();
-            var req = {};
-            req.deviceUuid = "string";
-            req.timestamp = 0;
-            req.userTransactionKey = "string";
 
             var registerLineWebReqBean = {};
             registerLineWebReqBean.citizenId = $('input[name="citizen_id"]').val();
             registerLineWebReqBean.firstName = $('input[name="first_name"]').val();
             registerLineWebReqBean.lastName = $('input[name="last_name"]').val(),
             registerLineWebReqBean.lineUserId = $('input[name="line_user_id"]').val();
-            registerLineWebReqBean.mobileNo = "0907363781";
-            registerLineWebReqBean.email = "test@gmail.com"
-            req.registerLineWebReqBean = registerLineWebReqBean
-            // var registerLineWebReqBeanObject = JSON.stringify({
-            //             citizenId: $('input[name="citizen_id"]').val(),
-            //             firstName: $('input[name="first_name"]').val(),
-            //             lastName: $('input[name="last_name"]').val(),
-            //             lineUserId: $('input[name="line_user_id"]').val(),
-            //             mobileNo: "0907363781",
-            //             email: "test@gmail.com",
-            //         })
-                    console.log(req);
-                $.ajax({
-                    type: "POST",
-                    url: "http://18.142.20.206:7090/register/line_web_key_in",
-                    headers:{         
-                        'Content-Type' : 'application/json'
-                    },
-                    data: JSON.stringify(req),
-                    dataType: 'json',
-                    success: function(result) {
-                        alert(JSON.stringify(result)+" test");
-                    },
-                    error: function(errMsg) {
-                        alert(errMsg);
-                    }
-                 });
+
+            console.log(registerLineWebReqBean);
+            $.ajax({
+                type: "POST",
+                url: "https://line-gateway-stream.herokuapp.com/register/line_web_key_in",
+                headers:{         
+                    'Content-Type' : 'application/json'
+                },
+                data: JSON.stringify(registerLineWebReqBean),
+                dataType: 'json',
+                success: function(result) {
+                    alert(JSON.stringify(result)+" test");
+                },
+                error: function(errMsg) {
+                    alert(errMsg);
+                }
+                });
 
         });
 
